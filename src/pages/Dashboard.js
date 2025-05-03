@@ -56,6 +56,7 @@ const categoryData = [
   { name: "Tablets", value: 400 },
   { name: "Syrups", value: 300 },
   { name: "Ointments", value: 300 },
+  
 ];
 
 const COLORS = ["#388e3c", "#66bb6a", "#a5d6a7"];
