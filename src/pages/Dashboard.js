@@ -95,7 +95,7 @@ function Dashboard() {
         <Grid item xs={12} md={4}>
           <Paper elevation={3} sx={{ p: 2 }}>
             <Typography variant="h6" gutterBottom>
-              Monthly Sales
+             <b> Monthly Sales</b>
             </Typography>
             <ResponsiveContainer height={230} width={450}>
               <BarChart data={salesData}>
@@ -121,7 +121,7 @@ function Dashboard() {
             }}
           >
             <Typography variant="h6" gutterBottom>
-              Low Stock Items
+              <b>Low Stock Items</b>
             </Typography>
             {lowStock.map((item, index) => (
               <Typography key={index} variant="body2">
@@ -135,7 +135,7 @@ function Dashboard() {
             sx={{ p: 2, backgroundColor: "#fffde7", width: 300, height: 110 }}
           >
             <Typography variant="h6" gutterBottom>
-              Expiring Soon
+             <b> Expiring Soon</b>
             </Typography>
             {expiringSoon.map((item, i) => (
               <Typography key={i} variant="body2">
@@ -148,7 +148,7 @@ function Dashboard() {
         <Grid item xs={12} md={4}>
           <Paper elevation={3} sx={{ p: 2 }}>
             <Typography variant="h6" gutterBottom>
-              Category Breakdown
+              <b>Category Breakdown</b>
             </Typography>
             <ResponsiveContainer width={300} height={230}>
               <PieChart>
