@@ -8,7 +8,7 @@ import Orders from '../pages/Orders';
 
 function MainLayout() {
   const [activePage, setActivePage] = useState('dashboard');
-
+  const [SideBarOpen,setSideBarOpen] = useState(true)
   const renderPage = () => {
     switch (activePage) {
       case 'dashboard':
@@ -25,12 +25,16 @@ function MainLayout() {
   return (
     <Box display="flex" height="100vh" sx={{ gap: 2 }}>
       
-      {/* Sidebar */}
-      <Box sx={{ width: 220 }}>
-        <SideBar Navigate={setActivePage} activePage={activePage} />
+      <Box sx={{ width: SideBarOpen ? 220 : 60 }}>
+        <SideBar 
+        Navigate={setActivePage} 
+        activePage={activePage} 
+        Menuicon = {(e)=>{
+          setSideBarOpen(e)
+        }}
+        />
       </Box>
 
-      {/* Main Content Area */}
       <Box
         sx={{
           flex: 1,
@@ -39,7 +43,6 @@ function MainLayout() {
           flexDirection: 'column',
         }}
       >
-        {/* Top Icons Bar */}
         <Box
           sx={{
             display: 'flex',
@@ -59,7 +62,6 @@ function MainLayout() {
           </IconButton>
         </Box>
 
-        {/* Scrollable Content */}
         <Box
           sx={{
             flex: 1,

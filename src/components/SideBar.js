@@ -1,15 +1,23 @@
-import React from 'react';
-import { List, ListItem, ListItemText, IconButton } from '@mui/material';
+import React, { useState } from 'react';
+import { List, ListItem, ListItemText, IconButton, Tooltip } from '@mui/material';
 import { Dashboard, Inventory, ShoppingCart, Menu } from '@mui/icons-material';
 import '../styles/Sidebar.css';
 
 function Sidebar(props) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  const handleToggle = () => {
+    const updatedState = !isSidebarOpen;
+    setIsSidebarOpen(updatedState);
+    props.Menuicon(updatedState);
+  };
+
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isSidebarOpen ? 'expanded' : 'collapsed'}`}>
       <div className="sidebar-header">
-        <h3>Pharmacy</h3>
-        <IconButton color="primary">
-          <Menu/>
+        {isSidebarOpen && <h3>Pharmacy</h3>}
+        <IconButton color="primary" onClick={handleToggle}>
+          <Menu />
         </IconButton>
       </div>
 
@@ -19,8 +27,10 @@ function Sidebar(props) {
           className={props.activePage === 'dashboard' ? 'active' : ''}
           onClick={() => props.Navigate('dashboard')}
         >
-          <Dashboard />
-          <ListItemText primary="Dashboard" />
+          <Tooltip title="Dashboard" placement="right" disableHoverListener={isSidebarOpen}>
+            <Dashboard />
+          </Tooltip>
+          {isSidebarOpen && <ListItemText primary="Dashboard" />}
         </ListItem>
 
         <ListItem
@@ -28,8 +38,10 @@ function Sidebar(props) {
           className={props.activePage === 'inventory' ? 'active' : ''}
           onClick={() => props.Navigate('inventory')}
         >
-          <Inventory />
-          <ListItemText primary="Inventory" />
+          <Tooltip title="Inventory" placement="right" disableHoverListener={isSidebarOpen}>
+            <Inventory />
+          </Tooltip>
+          {isSidebarOpen && <ListItemText primary="Inventory" />}
         </ListItem>
 
         <ListItem
@@ -37,8 +49,10 @@ function Sidebar(props) {
           className={props.activePage === 'orders' ? 'active' : ''}
           onClick={() => props.Navigate('orders')}
         >
-          <ShoppingCart />
-          <ListItemText primary="Orders" />
+          <Tooltip title="Orders" placement="right" disableHoverListener={isSidebarOpen}>
+            <ShoppingCart />
+          </Tooltip>
+          {isSidebarOpen && <ListItemText primary="Orders" />}
         </ListItem>
       </List>
     </div>
